@@ -1,0 +1,125 @@
+---
+title: "graphs"
+author: "vishnusagar2021"
+date: "2/7/2021"
+output: html_document
+---
+# R base
+##pie chart in 
+pie(x,labels, radius, main, col, clockwise)
+
+x= vector
+lables = discription to the vectors
+radius = -1 to +1
+main = title of chart
+col= color for chart
+colockwise = clockwise and anticlockwise  T/F
+
+
+```{r}
+#eg
+x= c(20,15,25,30,10)
+
+labels= c("sugu","rosy","sixer","corona","covid")
+
+#eg1
+
+pie(x,labels, radius = 1,main = "hostel",col=rainbow (5), colockwise = F)
+#eg2
+
+pie(x,labels, radius = 1,main = "hostel",col=c("purple", "violetred1", "green3",
+"cornsilk", "cyan", "white"), colockwise = F)
+
+#eg3
+
+
+
+
+```
+
+##saving a graph/diagram
+1) x= c(20,15,25,30,10)..............................data for graph
+
+labels= c("sugu","rosy","sixer","corona","covid")
+
+2) png(file="filename.png")................chart file name
+
+3) pie(x,labels, radius = 1,main = "hostel",col=rainbow (5), colockwise = F)
+
+4) dev.off() ..............for svaing the file
+``
+
+
+```{r}
+x= c(20,15,25,30,10)
+labels= c("sugu","rosy","sixer","corona","covid")
+png(file= "hostel.png")
+pie (x,labels, radius = 1,main = "hostel", col=rainbow (5))
+
+dev.off()
+```
+#percentage pie
+```{r}
+piepercent=round(100*x/sum(x),1)
+pie(x,labels=piepercent, radius = 1,main = "hostel", col=rainbow(length(x)))
+legend("topright", c("sugu","rosy","sixer","corona","covid"), cex=0.5, fill=rainbow(length(x)))
+
+```
+##3D pie chart
+library("plotrix")
+```{r}
+install.packages("plotrix")
+library("plotrix")
+pie3D(x,labels=labels, explode=0.1, main = "hostel")
+
+
+
+```
+#Bar diagaram
+barplot(H,xlab,ylab,main,names.arg, col)
+H-data
+xlab- x axis label
+ylab- y axis label
+main - chart title
+names.arg- vecor containing names for each bar
+col- color for bar
+```{r}
+png(file="bar.png")
+H=c(8,12,9,11,6)
+label= c("S1","S2","S3","S4","S5")
+barplot(H, xlab = "stations",ylab = "TDS(mg/L)", names.arg = label,col= "blue", border = "black")
+dev.off()
+
+```
+```{r}
+H=c(8,12,9,11,6)
+label= c("S1","S2","S3","S4","S5")
+barplot(H, xlab = "stations",ylab = "TDS(mg/L)", main= "WQ data", names.arg = label,col= "blue", border = "black")
+```
+#group bar chart and stacked barchart
+
+```{r}
+colors= c("blue","green", "red")
+Station= c("S1","S2","S3","S4","S5")
+quality= c("good","bad", "poor")
+
+values=matrix(c(20:34),nrow=3, ncol=5, byrow=T)
+values
+
+barplot(values,xlab = "Stations", ylab="EU", main="quality data", names.arg = Station, col=colors, border= "black")
+legend("topright",quality, cex= 0.7, fill=colors)
+```
+
+```{r}
+colors= c("blue","green", "red")
+Station= c("S1","S2","S3","S4","S5")
+quality= c("good","bad", "poor")
+
+values=matrix(c(20:34),nrow=3, ncol=5, byrow=T)
+values
+png(file="group_bar.png")
+barplot(values,xlab = "Stations", ylab="EU", main="quality data", names.arg = Station, col=colors, border= "black")
+legend("topright",quality, cex= 0.7, fill=colors)
+dev.off()
+```
+
