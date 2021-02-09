@@ -219,4 +219,13 @@ p=ggplot(data= mtcars,aes(x=factor(cyl)))+
 p
 dev.off()
 ```
+```{r}
+head(mtcars)
+
+p=ggplot (mtcars,aes(x=factor(cyl), y=mpg, color=cyl))+
+  geom_bar(stat="identity", fill="white")+
+  theme_classic()+
+  theme(legend.position = "top")
+p
+```
 
