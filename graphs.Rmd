@@ -122,4 +122,90 @@ barplot(values,xlab = "Stations", ylab="EU", main="quality data", names.arg = St
 legend("topright",quality, cex= 0.7, fill=colors)
 dev.off()
 ```
+# Histogram
+hist(V,main=,xlab=,xlim=,ylim=,breaks=,col=, border=)
+
+v- vector data
+main - title of diagram
+xlab- labels of x axis
+xlim- limt of x
+ylim- limt of y
+breaks= bar numbers or width of bar
+
+```{r}
+v=c(2,5,8,11,15,18,22,26,30,34,39)
+
+hist(v,main = "Salinity",xlab = "locations", col= "yellow",breaks = 8, border="black")
+```
+## xlim & ylim in histogram
+```{r}
+v=c(2,5,8,11,15,18,22,26,30,34,39)
+png(file="histogram.png")
+hist(v,main = "Salinity",xlab = "locations",xlim=c(0,40), ylim= c(0,3), col= "yellow",breaks = 8, border="black")
+dev.off()
+```
+##Line graph
+plot(v,type,col,xlab,ylab)
+v- data vector
+type- "p" only points, "l" only lines, "o" both lines and ponits
+
+xlab- labels of x axis
+ylab- lables for y axis
+col - colors
+
+```{r}
+v=as.integer(c(2.2,2.8, 3.5,3.9, 4.2))
+plot(v,type="p",xlab="concentration",ylab = "ABS",col="red",main = "STD")
+plot(v,type="o",xlab="ABS",ylab = "concentration",col="red",main = "STD")
+plot(v,type="l",xlab="ABS",ylab = "concentration",col= "red",main = "STD")
+```
+#multiple plot
+```{r}
+v=as.integer(c(2.2,2.8, 3.5,3.9, 4.2))
+p=as.integer(c(2.0,2.1, 2.8,3.2, 3.8))
+q=as.integer(c(2.4,2.6, 3.2,3.6, 3.9))
+
+plot(v,type="o",xlab="concentration",ylab = "ABS",col="red",main = "STD")
+lines(p,type="o",col="blue")
+lines(q,type="o",col="green")
+
+# xlim and ylim not allowed here
+
+```
+```{r}
+v=as.integer(c(2.2,2.8, 3.5,3.9, 4.2))
+p=as.integer(c(2.0,2.1, 2.8,3.2, 3.8))
+q=as.integer(c(2.4,2.6, 3.2,3.6, 3.9))
+png(file="linegraph.png")
+plot(v,type="o",xlab="concentration",ylab = "ABS",col="red",main = "STD")
+lines(p,type="o",col="blue")
+lines(q,type="o",col="green")
+dev.off()
+```
+## R-Scatter plot
+plot(x,y,main=,xlab=,ylab=xlim=,ylim=,axes=)
+
+x- vector1
+y- vector 2
+```{r}
+x= c(2,4,6,8,10)
+y=c(0.36,0.45,0.52,0.62,0.68)
+
+plot(x,y,main="STD",xlab="concentration",ylab="ABS",xlim= c(0,10), ylim=c(0,0.80), col="red")
+```
+#Data visualization with ggplot
+
+
+```{r}
+library("ggplot2")
+
+# bar diagram
+
+head(mtcars)
+
+p=ggplot(data= mtcars,aes(x=factor(cyl)))+
+  geom_bar(stat="count",width=0.25, fill="steelblue")+
+  theme_light()
+p
+```
 
