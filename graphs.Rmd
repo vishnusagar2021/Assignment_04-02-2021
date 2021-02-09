@@ -208,4 +208,15 @@ p=ggplot(data= mtcars,aes(x=factor(cyl)))+
   theme_light()
 p
 ```
+```{r}
+png(file= "ggplot_bar.png")
+
+head(mtcars)
+
+p=ggplot(data= mtcars,aes(x=factor(cyl)))+
+  geom_bar(stat="count",width=0.25, fill="steelblue")+
+  theme_light()
+p
+dev.off()
+```
 
