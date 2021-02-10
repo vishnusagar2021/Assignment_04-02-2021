@@ -252,7 +252,38 @@ ggplot(data=df2, aes(x=dose, y=len, fill=supp)) +
 ```{r}
 ggplot(data=df2, aes(x=dose, y=len, fill=supp)) +
 geom_bar(stat="identity", position = position_dodge() )+
-  theme_test()
+  theme_minimal()
+
+```
+```{r}
+install.packages("xlsx")
+library("xlsx")
+```
+```{r}
+
+```
+
+```{r}
+data001= read.xlsx ("/cloud/project/vishnudata/WQ_data_003.xlsx", sheetIndex = 1)
+head(data001)
+
+
+```
+
+
+```{r}
+ggplot(data=data001, aes(x=Location, y=pH, fill=season)) +
+geom_bar(stat="identity", position = position_dodge())+
+  theme_minimal()+theme(legend.position="bottom")
+
+```
+
+```{r}
+png(file="pHbardiagam.png")
+ggplot(data=data001, aes(x=Location, y=pH, fill=season)) +
+geom_bar(stat="identity", position = position_dodge())+
+  theme_minimal()+theme(legend.position="bottom")
+dev.off()
 
 ```
 
