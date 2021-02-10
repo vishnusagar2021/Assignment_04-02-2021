@@ -220,6 +220,7 @@ p
 dev.off()
 ```
 ```{r}
+# Change barplot line colors by groups
 head(mtcars)
 
 p=ggplot (mtcars,aes(x=factor(cyl), y=mpg, color=cyl))+
@@ -227,5 +228,31 @@ p=ggplot (mtcars,aes(x=factor(cyl), y=mpg, color=cyl))+
   theme_classic()+
   theme(legend.position = "top")
 p
+```
+## Change bar fill colors to blues
+```{r}
+p = p+scale_fill_brewer(palette="Blues")
+p + theme(legend.position="top")
+p + theme(legend.position="bottom")
+# Remove legend
+p + theme(legend.position="none")
+```
+### Barplot with multiple groups
+```{r}
+df2 <- data.frame(supp=rep(c("VC", "OJ"), each=3),
+                dose=rep(c("D0.5", "D1", "D2"),2),
+                len=c(6.8, 15, 33, 4.2, 10, 29.5))
+head(df2)
+```
+```{r}
+ggplot(data=df2, aes(x=dose, y=len, fill=supp)) +
+  geom_bar(stat="identity") +
+  theme_light()
+```
+```{r}
+ggplot(data=df2, aes(x=dose, y=len, fill=supp)) +
+geom_bar(stat="identity", position = position_dodge() )+
+  theme_test()
+
 ```
 
